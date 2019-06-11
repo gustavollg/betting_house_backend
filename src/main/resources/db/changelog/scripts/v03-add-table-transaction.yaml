@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3-1
+      author: Gustavo Galvao e Jose Dias
+      changes:
+        - createTable:
+            schemaName: betting_house
+            tableName: transaction
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: transaction_pkey
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+              - column:
+                  constraints:
+                    nullable: false
+                  name: coins
+                  type: DOUBLE
+              - column:
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_transaction_user_id
+                    references: betting_house.user(id)
+                  name: user_id
+                  type: BIGINT

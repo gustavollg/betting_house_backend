@@ -1,0 +1,71 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2-1
+      author: Gustavo Galvao e Jose Dias
+      changes:
+        - insert:
+            schemaName: betting_house
+            tableName: profile
+            columns:
+              - column:
+                  name: name
+                  value: ADMINISTRATOR
+        - insert:
+            schemaName: betting_house
+            tableName: profile
+            columns:
+              - column:
+                  name: name
+                  value: BETTER
+  - changeSet:
+      id: 2-2
+      author: Gustavo Galvao e Jose Dias
+      changes:
+        - insert:
+            schemaName: betting_house
+            tableName: role
+            columns:
+              - column:
+                  name: name
+                  value: role.user.manage
+        - insert:
+            schemaName: betting_house
+            tableName: role
+            columns:
+              - column:
+                  name: name
+                  value: role.user.view
+  - changeSet:
+      id: 2-3
+      author: Gustavo Galvao e Jose Dias
+      changes:
+        - insert:
+            schemaName: betting_house
+            columns:
+              - column:
+                  name: profile_id
+                  value: 1
+              - column:
+                  name: role_id
+                  value: 1
+            tableName: profile_role
+        - insert:
+            schemaName: betting_house
+            tableName: profile_role
+            columns:
+              - column:
+                  name: profile_id
+                  value: 1
+              - column:
+                  name: role_id
+                  value: 2
+        - insert:
+            schemaName: betting_house
+            tableName: profile_role
+            columns:
+              - column:
+                  name: profile_id
+                  value: 2
+              - column:
+                  name: role_id
+                  value: 2

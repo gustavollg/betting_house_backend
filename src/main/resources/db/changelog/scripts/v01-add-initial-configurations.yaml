@@ -1,0 +1,140 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-1
+      author: Gustavo Galvao e Jose Dias
+      changes:
+        - sql: CREATE SCHEMA betting_house;
+  - changeSet:
+      id: 1-2
+      author: Gustavo Galvao e Jose Dias
+      changes:
+        - createTable:
+            schemaName: betting_house
+            tableName: profile
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: profile_pkey
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR(255)
+  - changeSet:
+      id: 1-3
+      author: Gustavo Galvao e Jose Dias
+      changes:
+        - createTable:
+            schemaName: betting_house
+            tableName: role
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: role_pkey
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR(255)
+  - changeSet:
+      id: 1-4
+      author: Gustavo Galvao e Jose Dias
+      changes:
+        - createTable:
+            schemaName: betting_house
+            tableName: profile_role
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: profile_role_pkey
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+              - column:
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_profile_role_profile_id
+                    references: betting_house.profile(id)
+                  name: profile_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_profile_role_role_id
+                    references: betting_house.role(id)
+                  name: role_id
+                  type: BIGINT
+  - changeSet:
+      id: 1-5
+      author: Gustavo Galvao e Jose Dias
+      changes:
+        - createTable:
+            schemaName: betting_house
+            tableName: user
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: user_pkey
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: login
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: password
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: coins
+                  type: DOUBLE
+              - column:
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_user_profile_id
+                    references: betting_house.profile(id)
+                  name: profile_id
+                  type: BIGINT
+  - changeSet:
+      id: 1-6
+      author: Gustavo Galvao e Jose Dias
+      changes:
+        - addUniqueConstraint:
+            schemaName: betting_house
+            tableName: user
+            columnNames: login
+            constraintName: unique_login_user
+  - changeSet:
+      id: 1-7
+      author: Gustavo Galvao e Jose Dias
+      changes:
+        - addUniqueConstraint:
+            schemaName: betting_house
+            tableName: user
+            columnNames: email
+            constraintName: unique_email_user

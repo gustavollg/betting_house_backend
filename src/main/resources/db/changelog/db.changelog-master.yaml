@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - include:
+      file: "db/changelog/scripts/v01-add-initial-configurations.yaml"
+  - include:
+      file: "db/changelog/scripts/v02-add-default-data.yaml"
+  - include:
+      file: "db/changelog/scripts/v03-add-table-transaction.yaml"
+  - include:
+      file: "db/changelog/scripts/v04-add-table-sport.yaml"
+  - include:
+      file: "db/changelog/scripts/v05-add-table-event.yaml"
+  - include:
+      file: "db/changelog/scripts/v06-add-table-notification.yaml"
+  - include:
+      file: "db/changelog/scripts/v07-add-table-bet.yaml"
+  - include:
+      file: "db/changelog/scripts/v08-add-table-team.yaml"
+  - include:
+      file: "db/changelog/scripts/v09-add-table-odd.yaml"

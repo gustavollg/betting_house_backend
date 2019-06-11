@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4-1
+      author: Gustavo Galvao e Jose Dias
+      changes:
+        - createTable:
+            schemaName: betting_house
+            tableName: sport
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: sport_pkey
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR(255)

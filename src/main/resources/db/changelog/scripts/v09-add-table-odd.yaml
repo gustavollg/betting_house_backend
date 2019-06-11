@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: 7-1
+      author: Gustavo Galvao e Jose Dias
+      changes:
+        - createTable:
+            schemaName: betting_house
+            tableName: odd
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: odd_pkey
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+              - column:
+                  constraints:
+                    nullable: false
+                  name: odd
+                  type: DOUBLE
+              - column:
+                  name: points
+                  type: DOUBLE
+              - column:
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_odd_event_id
+                    references: betting_house.event(id)
+                  name: event_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_odd_team_id
+                    references: betting_house.team(id)
+                  name: team_id
+                  type: BIGINT
