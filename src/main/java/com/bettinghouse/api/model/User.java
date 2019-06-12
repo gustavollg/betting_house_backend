@@ -1,6 +1,8 @@
 package com.bettinghouse.api.model;
 
 import com.bettinghouse.api.architecture.model.AbstractEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Objects;
 
 import javax.persistence.*;
@@ -83,10 +85,12 @@ public class User extends AbstractEntity {
         this.login = login;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
 
+    @JsonProperty
     public void setPassword(String password) {
         this.password = password;
     }

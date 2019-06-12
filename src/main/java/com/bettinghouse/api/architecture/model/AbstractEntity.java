@@ -1,7 +1,5 @@
 package com.bettinghouse.api.architecture.model;
 
-import com.google.common.base.Objects;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
