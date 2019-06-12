@@ -20,6 +20,11 @@ public class Transaction extends AbstractEntity {
     public Transaction() {
     }
 
+    public Transaction(@NotNull(message = "COINS_IS_NULL") double coins, @NotNull(message = "USER_IS_NULL") User user) {
+        this.coins = coins;
+        this.user = user;
+    }
+
     public double getCoins() {
         return coins;
     }

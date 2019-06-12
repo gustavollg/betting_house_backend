@@ -21,7 +21,7 @@ public abstract class CRUDController<T extends AbstractEntity> {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<T> buscarPorId(@PathVariable Long id) {
+    public ResponseEntity<T> findById(@PathVariable Long id) {
         T entity = service.findById(id);
         return ResponseEntity.ok(entity);
     }

@@ -16,6 +16,10 @@ public class UserValidator extends CRUDValidator<User> {
     public UserValidator(UserValidatorHelper userValidatorHelper) {
         this.userValidatorHelper = userValidatorHelper;
     }
+    
+    public void validateUserBeforeAddCoins(double coins) {
+        checkError(coins <= 0, ApiErrorCode.COINS_MUST_BE_POSITIVE);
+    }
 
     @Override
     public void validateBeforeSave(User user) {
