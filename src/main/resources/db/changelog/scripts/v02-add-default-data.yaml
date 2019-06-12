@@ -16,7 +16,14 @@ databaseChangeLog:
             columns:
               - column:
                   name: name
-                  value: BETTER
+                  value: VIP
+        - insert:
+            schemaName: betting_house
+            tableName: profile
+            columns:
+              - column:
+                  name: name
+                  value: REGULAR
   - changeSet:
       id: 2-2
       author: Gustavo Galvao e Jose Dias
@@ -34,7 +41,14 @@ databaseChangeLog:
             columns:
               - column:
                   name: name
-                  value: role.user.view
+                  value: role.user.vip
+        - insert:
+            schemaName: betting_house
+            tableName: role
+            columns:
+              - column:
+                  name: name
+                  value: role.user.bet
   - changeSet:
       id: 2-3
       author: Gustavo Galvao e Jose Dias
@@ -65,7 +79,37 @@ databaseChangeLog:
             columns:
               - column:
                   name: profile_id
+                  value: 1
+              - column:
+                  name: role_id
+                  value: 3
+        - insert:
+            schemaName: betting_house
+            tableName: profile_role
+            columns:
+              - column:
+                  name: profile_id
                   value: 2
               - column:
                   name: role_id
                   value: 2
+        - insert:
+            schemaName: betting_house
+            tableName: profile_role
+            columns:
+              - column:
+                  name: profile_id
+                  value: 2
+              - column:
+                  name: role_id
+                  value: 3
+        - insert:
+            schemaName: betting_house
+            tableName: profile_role
+            columns:
+              - column:
+                  name: profile_id
+                  value: 3
+              - column:
+                  name: role_id
+                  value: 3

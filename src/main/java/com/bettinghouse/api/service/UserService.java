@@ -29,8 +29,8 @@ public class UserService extends CRUDService<User> {
         this.passwordEncoder = passwordEncoder;
     }
 
-    private void addAdministratorProfileToUser(User user) {
-        Optional<Profile> adminProfile = profileRepository.findByName(EnumProfile.ADMINISTRATOR.name());
+    private void addRegularProfileToUser(User user) {
+        Optional<Profile> adminProfile = profileRepository.findByName(EnumProfile.REGULAR.name());
         if (adminProfile.isPresent()) {
             user.setProfile(adminProfile.get());
         } else {
@@ -40,7 +40,7 @@ public class UserService extends CRUDService<User> {
 
     @Override
     public void executeBeforeSave(User user) {
-        addAdministratorProfileToUser(user);
+        addRegularProfileToUser(user);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
     }
 
