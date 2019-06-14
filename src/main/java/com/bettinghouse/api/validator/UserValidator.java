@@ -3,6 +3,7 @@ package com.bettinghouse.api.validator;
 import com.bettinghouse.api.architecture.validator.CRUDValidator;
 import com.bettinghouse.api.architecture.validator.dto.ApiErrorCode;
 import com.bettinghouse.api.model.User;
+import com.bettinghouse.api.model.util.EnumProfile;
 import com.bettinghouse.api.validator.helper.UserValidatorHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,11 @@ public class UserValidator extends CRUDValidator<User> {
     
     public void validateUserBeforeAddCoins(double coins) {
         checkError(coins <= 0, ApiErrorCode.COINS_MUST_BE_POSITIVE);
+    }
+    
+    public void validateUserBeforeBecomingVIP() {
+        checkError(userValidatorHelper.isUserCoinsBelow50(), ApiErrorCode.NOT_ENOUGH_COINS);
+        checkError(userValidatorHelper.isUserAlreadyVIP(), ApiErrorCode.USER_ALREADY_VIP);
     }
 
     @Override

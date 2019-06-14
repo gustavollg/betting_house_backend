@@ -35,9 +35,9 @@ public class UserService extends CRUDService<User> {
     }
 
     private void addRegularProfileToUser(User user) {
-        Optional<Profile> adminProfile = profileRepository.findByName(EnumProfile.REGULAR.name());
-        if (adminProfile.isPresent()) {
-            user.setProfile(adminProfile.get());
+        Optional<Profile> regularProfile = profileRepository.findByName(EnumProfile.REGULAR.name());
+        if (regularProfile.isPresent()) {
+            user.setProfile(regularProfile.get());
         } else {
             throw new ApiErrorException(ApiErrorCode.PROFILE_NOT_FOUND);
         }
@@ -50,6 +50,24 @@ public class UserService extends CRUDService<User> {
             user.setCoins(user.getCoins() + coins);
             userRepository.save(user);
             return user;
+        } else {
+            throw new ApiErrorException(ApiErrorCode.UNAUTHORIZED);
+        }
+    }
+    
+    public User becomeVIP() {
+        Optional<User> optionalUser = AuthenticationUtil.getAuthenticatedUser();
+        Optional<Profile> optionalVIPProfile = profileRepository.findByName(EnumProfile.VIP.name());
+        if (optionalUser.isPresent() && optionalVIPProfile.isPresent()) {
+            User user = userRepository.findById(optionalUser.get().getId()).get();
+            if (user.getCoins() < 50) {
+                throw new ApiErrorException(ApiErrorCode.NOT_ENOUGH_COINS);
+            } else {
+                user.setProfile(optionalVIPProfile.get());
+                user.setCoins(user.getCoins() - 50);
+                userRepository.save(user);
+                return user;
+            }
         } else {
             throw new ApiErrorException(ApiErrorCode.UNAUTHORIZED);
         }
