@@ -20,10 +20,9 @@ public class Odd extends AbstractEntity {
     private Event event;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "team_id", foreignKey = @ForeignKey(name = "fk_odd_team_id"), nullable = false)
-    @NotNull(message = "TEAM_IS_NULL")
+    @JoinColumn(name = "team_id", foreignKey = @ForeignKey(name = "fk_odd_team_id"))
     private Team team;
-    
+
     public Odd() {
     }
 

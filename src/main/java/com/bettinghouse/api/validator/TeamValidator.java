@@ -16,10 +16,14 @@ public class TeamValidator extends CRUDValidator<Team> {
     public TeamValidator(SportValidatorHelper sportValidatorHelper) {
         this.sportValidatorHelper = sportValidatorHelper;
     }
+    
+    public void validateBeforeFetchTeamsBySportId(Long id) {
+        checkError(!sportValidatorHelper.isSportPresentOnDatabase(id), ApiErrorCode.SPORT_NOT_ON_DATABASE);
+    }
 
     @Override
     public void validateBeforeSave(Team team) {
-        checkError(!sportValidatorHelper.isSportPresentOnDatabase(team.getSport()), ApiErrorCode.SPORT_NOT_ON_DATABASE);
+        checkError(!sportValidatorHelper.isSportPresentOnDatabase(team.getSport().getId()), ApiErrorCode.SPORT_NOT_ON_DATABASE);
     }
 
     @Override

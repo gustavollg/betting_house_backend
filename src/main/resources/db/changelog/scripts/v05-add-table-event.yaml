@@ -30,6 +30,11 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
+                  name: has_draw
+                  type: BOOLEAN
+              - column:
+                  constraints:
+                    nullable: false
                     foreignKeyName: fk_event_sport_id
                     references: betting_house.sport(id)
                   name: sport_id

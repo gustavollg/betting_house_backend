@@ -5,7 +5,6 @@ import com.bettinghouse.api.repository.SportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,8 +18,8 @@ public class SportValidatorHelper {
         this.sportRepository = sportRepository;
     }
 
-    public boolean isSportPresentOnDatabase(Sport sport) {
-        Optional<Sport> optionalSport = sportRepository.findById(sport.getId());
+    public boolean isSportPresentOnDatabase(Long id) {
+        Optional<Sport> optionalSport = sportRepository.findById(id);
         return optionalSport.isPresent();
     }
     

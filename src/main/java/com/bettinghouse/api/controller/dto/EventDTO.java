@@ -1,31 +1,27 @@
-package com.bettinghouse.api.model;
+package com.bettinghouse.api.controller.dto;
 
-import com.bettinghouse.api.architecture.model.AbstractEntity;
+import com.bettinghouse.api.model.Sport;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
-@Entity(name = "event")
-@SequenceGenerator(name = "default_generator", sequenceName = "event_id_seq", allocationSize = 1)
-public class Event extends AbstractEntity {
+public class EventDTO {
     
     private String information;
     
     @NotNull(message = "IS_RESTRICTED_IS_NULL")
     private boolean isRestricted;
-    
-    @NotNull(message = "IS_OPEN_IS_NULL")
-    private boolean isOpen;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sport_id", foreignKey = @ForeignKey(name = "fk_event_sport_id"), nullable = false)
     @NotNull(message = "SPORT_IS_NULL")
     private Sport sport;
+    
+    @NotNull(message = "ODDDTO_IS_NULL")
+    private List<OddDTO> oddDTOs;
 
     @NotNull(message = "HAS_DRAW_IS_NULL")
     private boolean hasDraw;
-
-    public Event() {
+    
+    public EventDTO() {
     }
 
     public String getInformation() {
@@ -44,20 +40,20 @@ public class Event extends AbstractEntity {
         isRestricted = restricted;
     }
 
-    public boolean isOpen() {
-        return isOpen;
-    }
-
-    public void setOpen(boolean open) {
-        isOpen = open;
-    }
-
     public Sport getSport() {
         return sport;
     }
 
     public void setSport(Sport sport) {
         this.sport = sport;
+    }
+
+    public List<OddDTO> getOddDTOs() {
+        return oddDTOs;
+    }
+
+    public void setOddDTOs(List<OddDTO> oddDTOs) {
+        this.oddDTOs = oddDTOs;
     }
 
     public boolean isHasDraw() {

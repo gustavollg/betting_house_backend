@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 7-1
+      id: 9-1
       author: Gustavo Galvao e Jose Dias
       changes:
         - createTable:
@@ -31,7 +31,7 @@ databaseChangeLog:
                   type: BIGINT
               - column:
                   constraints:
-                    nullable: false
+                    nullable: true
                     foreignKeyName: fk_odd_team_id
                     references: betting_house.team(id)
                   name: team_id
