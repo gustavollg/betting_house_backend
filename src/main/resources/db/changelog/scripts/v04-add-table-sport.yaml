@@ -19,3 +19,8 @@ databaseChangeLog:
                     nullable: false
                   name: name
                   type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: has_draw
+                  type: BOOLEAN

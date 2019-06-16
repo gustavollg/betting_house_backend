@@ -30,8 +30,8 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
-                  name: has_draw
-                  type: BOOLEAN
+                  name: start_date
+                  type: Date
               - column:
                   constraints:
                     nullable: false

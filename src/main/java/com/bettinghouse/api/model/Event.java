@@ -4,6 +4,7 @@ import com.bettinghouse.api.architecture.model.AbstractEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity(name = "event")
 @SequenceGenerator(name = "default_generator", sequenceName = "event_id_seq", allocationSize = 1)
@@ -17,13 +18,12 @@ public class Event extends AbstractEntity {
     @NotNull(message = "IS_OPEN_IS_NULL")
     private boolean isOpen;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    private Date startDate;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "sport_id", foreignKey = @ForeignKey(name = "fk_event_sport_id"), nullable = false)
     @NotNull(message = "SPORT_IS_NULL")
     private Sport sport;
-
-    @NotNull(message = "HAS_DRAW_IS_NULL")
-    private boolean hasDraw;
 
     public Event() {
     }
@@ -52,19 +52,19 @@ public class Event extends AbstractEntity {
         isOpen = open;
     }
 
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
     public Sport getSport() {
         return sport;
     }
 
     public void setSport(Sport sport) {
         this.sport = sport;
-    }
-
-    public boolean isHasDraw() {
-        return hasDraw;
-    }
-
-    public void setHasDraw(boolean hasDraw) {
-        this.hasDraw = hasDraw;
     }
 }

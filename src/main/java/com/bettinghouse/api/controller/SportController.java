@@ -28,9 +28,7 @@ public class SportController extends CRUDController<Sport> {
     }
     
     @PostMapping("save")
-    public ResponseEntity<Sport> saveSport(@RequestBody @Valid String name) {
-        Sport sport = new Sport();
-        sport.setName(name);
+    public ResponseEntity<Sport> saveSport(@RequestBody @Valid Sport sport) {
         sportValidator.validateBeforeSave(sport);
         Sport sportPersisted = sportService.save(sport);
         return ResponseEntity.ok(sportPersisted);

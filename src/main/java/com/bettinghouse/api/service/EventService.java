@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -32,7 +33,7 @@ public class EventService extends CRUDService<Event> {
         event.setRestricted(eventDTO.isRestricted());
         event.setOpen(true);
         event.setSport(eventDTO.getSport());
-        event.setHasDraw(eventDTO.isHasDraw());
+        event.setStartDate(new Date(System.currentTimeMillis()));
         return event;
     }
     
@@ -46,6 +47,15 @@ public class EventService extends CRUDService<Event> {
             odds.add(odd);
         });
         oddRepository.saveAll(odds);
+    }
+    
+    public List<Event> findAllOpenEvents() {
+        return eventRepository.findAll();
+    }
+    
+    public List<Odd> findAllOddsByEventId(Long id) {
+        Event event = eventRepository.findById(id).get();
+        return oddRepository.findAllByEvent(event);
     }
 
     @Override

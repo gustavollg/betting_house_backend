@@ -18,9 +18,6 @@ public class EventDTO {
     @NotNull(message = "ODDDTO_IS_NULL")
     private List<OddDTO> oddDTOs;
 
-    @NotNull(message = "HAS_DRAW_IS_NULL")
-    private boolean hasDraw;
-    
     public EventDTO() {
     }
 
@@ -54,13 +51,5 @@ public class EventDTO {
 
     public void setOddDTOs(List<OddDTO> oddDTOs) {
         this.oddDTOs = oddDTOs;
-    }
-
-    public boolean isHasDraw() {
-        return hasDraw;
-    }
-
-    public void setHasDraw(boolean hasDraw) {
-        this.hasDraw = hasDraw;
     }
 }

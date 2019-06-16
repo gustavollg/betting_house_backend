@@ -22,6 +22,11 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
+                  name: odd
+                  type: DOUBLE
+              - column:
+                  constraints:
+                    nullable: false
                     foreignKeyName: fk_bet_event_id
                     references: betting_house.event(id)
                   name: event_id

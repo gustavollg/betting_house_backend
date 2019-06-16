@@ -11,6 +11,8 @@ public class Bet extends AbstractEntity {
     
     @NotNull(message = "BET_IS_NULL")
     private double bet;
+    
+    private double odd;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "event_id", foreignKey = @ForeignKey(name = "fk_bet_event_id"), nullable = false)
@@ -19,10 +21,17 @@ public class Bet extends AbstractEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_bet_user_id"), nullable = false)
-    @NotNull(message = "USER_IS_NULL")
     private User user;
 
     public Bet() {
+    }
+
+    public double getOdd() {
+        return odd;
+    }
+
+    public void setOdd(double odd) {
+        this.odd = odd;
     }
 
     public double getBet() {

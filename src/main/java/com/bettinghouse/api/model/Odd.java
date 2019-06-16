@@ -14,12 +14,12 @@ public class Odd extends AbstractEntity {
     
     private double points;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "event_id", foreignKey = @ForeignKey(name = "fk_odd_event_id"), nullable = false)
     @NotNull(message = "EVENT_IS_NULL")
     private Event event;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "team_id", foreignKey = @ForeignKey(name = "fk_odd_team_id"))
     private Team team;
 
