@@ -7,12 +7,10 @@ import com.bettinghouse.api.service.BetService;
 import com.bettinghouse.api.validator.BetValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/bets")
@@ -32,5 +30,11 @@ public class BetController extends CRUDController<Bet> {
     public ResponseEntity<Bet> saveBet(@RequestBody @Valid BetDTO betDTO) {
         Bet bet = betService.saveBet(betDTO);
         return ResponseEntity.ok(bet);
+    }
+    
+    @GetMapping("find-bets-by-events/{id}")
+    public ResponseEntity<List<Bet>> getAllBetsByEvent(@PathVariable Long id) {
+        List<Bet> bets = betService.getAllBetsByEvent(id);
+        return ResponseEntity.ok(bets);
     }
 }

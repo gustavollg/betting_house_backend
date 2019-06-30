@@ -14,12 +14,12 @@ public class Bet extends AbstractEntity {
     
     private double odd;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "event_id", foreignKey = @ForeignKey(name = "fk_bet_event_id"), nullable = false)
     @NotNull(message = "EVENT_IS_NULL")
     private Event event;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_bet_user_id"), nullable = false)
     private User user;
 

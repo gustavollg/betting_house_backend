@@ -1,6 +1,7 @@
 package com.bettinghouse.api.controller;
 
 import com.bettinghouse.api.architecture.controller.CRUDController;
+import com.bettinghouse.api.controller.dto.CloseEventDTO;
 import com.bettinghouse.api.controller.dto.EventDTO;
 import com.bettinghouse.api.model.Event;
 import com.bettinghouse.api.model.Odd;
@@ -39,8 +40,15 @@ public class EventController extends CRUDController<Event> {
     
     @GetMapping("find-all-open-events")
     public ResponseEntity<List<Event>> findAllOpenEvents() {
-        List<Event> events = eventService.findAllOpenEvents();
+        List<Event> events = eventService.findAllEvents();
         List<Event> openEvents = events.stream().filter(Event::isOpen).collect(Collectors.toList());
+        return ResponseEntity.ok(openEvents);
+    }
+    
+    @GetMapping("find-all-closed-events")
+    public ResponseEntity<List<Event>> findAllClosedEvents() {
+        List<Event> events = eventService.findAllEvents();
+        List<Event> openEvents = events.stream().filter(event -> !event.isOpen()).collect(Collectors.toList());
         return ResponseEntity.ok(openEvents);
     }
     
@@ -48,5 +56,18 @@ public class EventController extends CRUDController<Event> {
     public ResponseEntity<List<Odd>> findAllOddsByEventId(@PathVariable Long id) {
         List<Odd> odds = eventService.findAllOddsByEventId(id);
         return ResponseEntity.ok(odds);
+    }
+    
+    @PostMapping("close-event")
+    public ResponseEntity closeEvent(@RequestBody @Valid CloseEventDTO closeEventDTO) {
+        eventService.updateUserCoinsAfterEventClosed(closeEventDTO.getOdd(), closeEventDTO.getEventId());
+        return ResponseEntity.ok().build();
+    }
+    
+    @GetMapping("find-open-events-by-sport-id/{id}")
+    public ResponseEntity<List<Event>> findEventsBySportId(@PathVariable Long id) {
+        List<Event> events = eventService.findEventsBySportId(id);
+        List<Event> openEvents = events.stream().filter(Event::isOpen).collect(Collectors.toList());
+        return ResponseEntity.ok(openEvents);
     }
 }
