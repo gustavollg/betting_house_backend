@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,7 +49,7 @@ public class BetService extends CRUDService<Bet> {
         bet.setTeam(betDTO.getTeam());
         bet.setUser(user);
         user.setCoins(user.getCoins() - bet.getBet());
-        transactionRepository.save(new Transaction((bet.getBet() * (-1)), user));
+        transactionRepository.save(new Transaction((bet.getBet() * (-1)), new Date(System.currentTimeMillis()), user));
         userRepository.save(user);
         return betRepository.save(bet);
     }

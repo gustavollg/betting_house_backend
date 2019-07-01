@@ -84,7 +84,7 @@ public class EventService extends CRUDService<Event> {
                     bet.setWon(true);
                     user.setCoins(user.getCoins() + (bet.getBet() * bet.getOdd()));
                     betRepository.save(bet);
-                    transactionRepository.save(new Transaction((bet.getBet() * bet.getOdd()), user));
+                    transactionRepository.save(new Transaction((bet.getBet() * bet.getOdd()), new Date(System.currentTimeMillis()), user));
                     userRepository.save(user);
                 }
             });

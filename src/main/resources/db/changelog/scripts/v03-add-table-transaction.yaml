@@ -16,6 +16,11 @@ databaseChangeLog:
                   autoIncrement: true
               - column:
                   constraints:
+                    nullable: true
+                  name: start_date
+                  type: Date
+              - column:
+                  constraints:
                     nullable: false
                   name: coins
                   type: DOUBLE
