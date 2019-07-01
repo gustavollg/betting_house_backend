@@ -1,6 +1,7 @@
 package com.bettinghouse.api.controller;
 
 import com.bettinghouse.api.architecture.controller.CRUDController;
+import com.bettinghouse.api.model.Transaction;
 import com.bettinghouse.api.model.User;
 import com.bettinghouse.api.service.UserService;
 import com.bettinghouse.api.validator.UserValidator;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -38,5 +40,10 @@ public class UserController extends CRUDController<User> {
         User user = userService.becomeVIP();
         return ResponseEntity.ok(user);
     }
-
+    
+    @GetMapping("transactions")
+    public ResponseEntity<List<Transaction>> getTransactions() {
+        List<Transaction> transactions = userService.getTransactions();
+        return ResponseEntity.ok(transactions);
+    }
 }

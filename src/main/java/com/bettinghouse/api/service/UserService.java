@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -76,6 +77,12 @@ public class UserService extends CRUDService<User> {
     public void addTransaction(double coins, User user) {
         Transaction transaction = new Transaction(coins, user);
         transactionRepository.save(transaction);
+    }
+    
+    public List<Transaction> getTransactions() {
+        User userAuthenticated = AuthenticationUtil.getAuthenticatedUser().get();
+        User user = userRepository.findById(userAuthenticated.getId()).get();
+        return transactionRepository.findAllByUser(user);
     }
 
     @Override

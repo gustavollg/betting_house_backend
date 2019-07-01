@@ -2,6 +2,7 @@ package com.bettinghouse.api.controller;
 
 import com.bettinghouse.api.architecture.controller.CRUDController;
 import com.bettinghouse.api.controller.dto.BetDTO;
+import com.bettinghouse.api.controller.dto.HistoryDTO;
 import com.bettinghouse.api.model.Bet;
 import com.bettinghouse.api.service.BetService;
 import com.bettinghouse.api.validator.BetValidator;
@@ -37,4 +38,11 @@ public class BetController extends CRUDController<Bet> {
         List<Bet> bets = betService.getAllBetsByEvent(id);
         return ResponseEntity.ok(bets);
     }
+
+    @GetMapping("get-bet-history")
+    public ResponseEntity<List<HistoryDTO>> getBetHistory() {
+        List<HistoryDTO> historyDTOs = betService.getHistory();
+        return ResponseEntity.ok(historyDTOs);
+    }
+
 }

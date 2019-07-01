@@ -79,8 +79,11 @@ public class EventService extends CRUDService<Event> {
             List<Bet> bets = betRepository.findBetsByEvent(optionalEvent.get());
             bets.forEach(bet -> {
                 User user = bet.getUser();
+                bet.setWon(false);
                 if (bet.getOdd() == odd) {
+                    bet.setWon(true);
                     user.setCoins(user.getCoins() + (bet.getBet() * bet.getOdd()));
+                    betRepository.save(bet);
                     transactionRepository.save(new Transaction((bet.getBet() * bet.getOdd()), user));
                     userRepository.save(user);
                 }

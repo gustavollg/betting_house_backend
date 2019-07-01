@@ -13,6 +13,8 @@ public class Bet extends AbstractEntity {
     private double bet;
     
     private double odd;
+    
+    private boolean won;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "event_id", foreignKey = @ForeignKey(name = "fk_bet_event_id"), nullable = false)
@@ -23,6 +25,10 @@ public class Bet extends AbstractEntity {
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_bet_user_id"), nullable = false)
     private User user;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "team_id", foreignKey = @ForeignKey(name = "fk_bet_team_id"), nullable = true)
+    private Team team;
+
     public Bet() {
     }
 
@@ -32,6 +38,14 @@ public class Bet extends AbstractEntity {
 
     public void setOdd(double odd) {
         this.odd = odd;
+    }
+
+    public boolean isWon() {
+        return won;
+    }
+
+    public void setWon(boolean won) {
+        this.won = won;
     }
 
     public double getBet() {
@@ -56,5 +70,13 @@ public class Bet extends AbstractEntity {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }

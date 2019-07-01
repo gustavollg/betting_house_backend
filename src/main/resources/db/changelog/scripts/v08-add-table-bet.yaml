@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 7-1
+      id: 8-1
       author: Gustavo Galvao e Jose Dias
       changes:
         - createTable:
@@ -26,6 +26,11 @@ databaseChangeLog:
                   type: DOUBLE
               - column:
                   constraints:
+                    nullable: true
+                  name: won
+                  type: BOOLEAN
+              - column:
+                  constraints:
                     nullable: false
                     foreignKeyName: fk_bet_event_id
                     references: betting_house.event(id)
@@ -37,4 +42,11 @@ databaseChangeLog:
                     foreignKeyName: fk_bet_user_id
                     references: betting_house.user(id)
                   name: user_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_bet_team_id
+                    references: betting_house.team(id)
+                  name: team_id
                   type: BIGINT

@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 8-1
+      id: 7-1
       author: Gustavo Galvao e Jose Dias
       changes:
         - createTable:

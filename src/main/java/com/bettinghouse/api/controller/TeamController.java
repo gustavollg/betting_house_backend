@@ -6,11 +6,9 @@ import com.bettinghouse.api.service.TeamService;
 import com.bettinghouse.api.validator.TeamValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -33,4 +31,11 @@ public class TeamController extends CRUDController<Team> {
         List<Team> teams = teamService.findTeamsBySportId(id);
         return ResponseEntity.ok(teams);
     }
+    
+    @PostMapping("save")
+    public ResponseEntity<Team> saveTeam(@RequestBody @Valid Team team) {
+        teamValidator.validateBeforeSave(team);
+        Team teamPersisted = teamService.save(team);
+        return ResponseEntity.ok(teamPersisted);
+    } 
 }

@@ -1,12 +1,14 @@
 package com.bettinghouse.api.controller.dto;
 
 import com.bettinghouse.api.model.Event;
+import com.bettinghouse.api.model.Team;
 
 public class BetDTO {
     
     private double bet;
     private double odd;
     private Event event;
+    private Team team;
 
     public BetDTO() {
     }
@@ -33,5 +35,13 @@ public class BetDTO {
 
     public void setEvent(Event event) {
         this.event = event;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }

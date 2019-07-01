@@ -24,6 +24,7 @@ public class TeamValidator extends CRUDValidator<Team> {
     @Override
     public void validateBeforeSave(Team team) {
         checkError(!sportValidatorHelper.isSportPresentOnDatabase(team.getSport().getId()), ApiErrorCode.SPORT_NOT_ON_DATABASE);
+        checkError(sportValidatorHelper.isTeamNameAlreadyRegistered(team, team.getSport().getId()), ApiErrorCode.TEAM_ALREADY_EXIST);
     }
 
     @Override
