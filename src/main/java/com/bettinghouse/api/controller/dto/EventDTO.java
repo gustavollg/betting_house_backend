@@ -10,7 +10,7 @@ public class EventDTO {
     private String information;
     
     @NotNull(message = "IS_RESTRICTED_IS_NULL")
-    private boolean isRestricted;
+    private boolean restricted;
 
     @NotNull(message = "SPORT_IS_NULL")
     private Sport sport;
@@ -30,11 +30,11 @@ public class EventDTO {
     }
 
     public boolean isRestricted() {
-        return isRestricted;
+        return restricted;
     }
 
     public void setRestricted(boolean restricted) {
-        isRestricted = restricted;
+        this.restricted = restricted;
     }
 
     public Sport getSport() {
